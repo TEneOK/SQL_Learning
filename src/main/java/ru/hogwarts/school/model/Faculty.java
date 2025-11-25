@@ -6,20 +6,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Student {
+public class Faculty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private int age;
+    private String color;
 
-    public Student() {
+    public Faculty() {
     }
 
-    public Student(String name, int age) {
+    public Faculty(String name, String color) {
         this.name = name;
-        this.age = age;
+        this.color = color;
     }
 
     public Long getId() {
@@ -38,11 +38,11 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getColor() {
+        return color;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setColor(String color) {
+        this.color = color;
     }
 }
