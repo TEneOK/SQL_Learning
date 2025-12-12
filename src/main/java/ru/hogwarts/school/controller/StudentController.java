@@ -26,11 +26,7 @@ public class StudentController {
             @RequestParam int minAge,
             @RequestParam int maxAge) {
 
-        if (minAge < 0 || maxAge < 0) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        if (minAge > maxAge) {
+        if (minAge < 0 || maxAge < 0 || minAge > maxAge) {
             return ResponseEntity.badRequest().build();
         }
 

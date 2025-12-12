@@ -12,7 +12,7 @@ public class Faculty {
     private String name;
     private String color;
 
-    @OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Student> students;
 
     public Faculty() {
