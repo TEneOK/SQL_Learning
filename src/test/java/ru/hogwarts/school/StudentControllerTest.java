@@ -100,7 +100,7 @@ public class StudentControllerTest {
 
         List<Student> students = Arrays.asList(student1, student2);
 
-        Mockito.when(studentService.findByAgeBetween(15, 16))
+        Mockito.when(studentService.findByAgeBetween(16, 17))
                 .thenReturn(students);
 
         mockMvc.perform(get("/student/age-between")
