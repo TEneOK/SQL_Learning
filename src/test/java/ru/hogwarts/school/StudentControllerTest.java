@@ -104,8 +104,8 @@ public class StudentControllerTest {
                 .thenReturn(students);
 
         mockMvc.perform(get("/student/age-between")
-                        .param("min", "15")
-                        .param("max", "16"))
+                        .param("min", "16")
+                        .param("max", "17"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
     }
