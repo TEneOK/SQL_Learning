@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.service.AvatarService;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -33,16 +32,6 @@ public class AvatarController {
             @RequestParam(defaultValue = "10") int size) {
 
         Page<Avatar> avatarsPage = avatarService.getAllAvatarsWithPagination(page, size);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("avatars", avatarsPage.getContent());
-        response.put("currentPage", avatarsPage.getNumber());
-        response.put("totalItems", avatarsPage.getTotalElements());
-        response.put("totalPages", avatarsPage.getTotalPages());
-        response.put("hasNext", avatarsPage.hasNext());
-        response.put("hasPrevious", avatarsPage.hasPrevious());
-        response.put("pageSize", avatarsPage.getSize());
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok((Map<String, Object>) avatarsPage);
     }
 }
