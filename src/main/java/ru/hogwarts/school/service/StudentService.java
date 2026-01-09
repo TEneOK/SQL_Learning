@@ -93,6 +93,18 @@ public class StudentService {
         avatarRepository.save(avatar);
     }
 
+    public Integer getTotalStudentsCount() {
+        return studentRepository.getTotalStudentsCount();
+    }
+
+    public Double getAverageAge() {
+        return studentRepository.getAverageAge();
+    }
+
+    public List<Student> getLastFiveStudents() {
+        return studentRepository.findLastFiveStudents();
+    }
+
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
