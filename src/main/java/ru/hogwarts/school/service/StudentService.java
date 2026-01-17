@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Optional;
 import javax.imageio.ImageIO;
 import javax.persistence.EntityNotFoundException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +30,7 @@ import ru.hogwarts.school.repository.StudentRepository;
 
 @Service
 public class StudentService {
+    Logger logger = LoggerFactory.getLogger(StudentService.class);
 
     @Value("${avatars.dir.path}")
     private String avatarsDir;
@@ -40,35 +44,45 @@ public class StudentService {
     }
 
     public Student addStudent(Student student) {
+        logger.info("Was invoked method for add student");
+
         student.setId(null);
         return studentRepository.save(student);
     }
 
     public Student findStudent(long id) {
+        logger.info("Was invoked method for find student");
         return studentRepository.findById(id).orElseThrow();
     }
 
     public Student editStudent(Student student) {
+        logger.info("Was invoked method for edit student");
         return studentRepository.save(student);
     }
 
     public void deleteStudent(long id) {
+        logger.info("Was invoked method for delete student");
         studentRepository.deleteById(id);
     }
 
     public List<Student> findByAge(int age) {
+        logger.info("Was invoked method for find by age");
         return studentRepository.findByAge(age);
     }
 
     public List<Student> findByAgeBetween(int minAge, int maxAge) {
+        logger.info("Was invoked method for find by age between");
         return studentRepository.findByAgeBetween(minAge, maxAge);
     }
 
     public Avatar findAvatar(long studentId) {
+        logger.info("Was invoked method for find avatars");
         return avatarRepository.findByStudentId(studentId).orElseThrow();
     }
 
     public void uploadAvatar(Long studentId, MultipartFile file) throws IOException {
+        logger.info("Was invoked method for upload avatar");
+
         Student student = findStudent(studentId);
 
         Path filePath = Path.of(avatarsDir, studentId + "." + getExtension(file.getOriginalFilename()));
@@ -94,14 +108,17 @@ public class StudentService {
     }
 
     public Integer getTotalStudentsCount() {
+        logger.info("Was invoked method for get total students count");
         return studentRepository.getTotalStudentsCount();
     }
 
     public Double getAverageAge() {
+        logger.info("Was invoked method for get average age");
         return studentRepository.getAverageAge();
     }
 
     public List<Student> getLastFiveStudents() {
+        logger.info("Was invoked method for get last five students");
         return studentRepository.findLastFiveStudents();
     }
 

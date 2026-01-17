@@ -1,6 +1,7 @@
 package ru.hogwarts.school.service;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
@@ -10,6 +11,7 @@ import ru.hogwarts.school.repository.FacultyRepository;
 public class FacultyService {
 
     private final FacultyRepository facultyRepository;
+
 
     public FacultyService(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
