@@ -1,26 +1,26 @@
 package ru.hogwarts.school.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class Student {
+public class Faculty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private int age;
+    private String color;
 
-    @ManyToOne
-    @JoinColumn(name = "faculty_id")
-    private Faculty faculty;
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private List<Student> students;
 
-    public Student() {
+    public Faculty() {
     }
 
-    public Student(String name, int age) {
+    public Faculty(String name, String color) {
         this.name = name;
-        this.age = age;
+        this.color = color;
     }
 
     public Long getId() {
@@ -39,11 +39,11 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getColor() {
+        return color;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setColor(String color) {
+        this.color = color;
     }
 }
