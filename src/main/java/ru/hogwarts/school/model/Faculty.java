@@ -15,9 +15,6 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Student> students;
 
-    public Faculty() {
-    }
-
     public Faculty(String name, String color) {
         this.name = name;
         this.color = color;

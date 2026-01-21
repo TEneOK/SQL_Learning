@@ -19,6 +19,7 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.OptionalDouble;
 
 @RestController
 @RequestMapping("/student")
@@ -122,15 +123,32 @@ public class StudentController {
         return ResponseEntity.ok(count != null ? count : 0);
     }
 
-    @GetMapping("/average-age")
-    public ResponseEntity<Double> getAverageAge() {
-        Double averageAge = studentService.getAverageAge();
-        return ResponseEntity.ok(averageAge != null ? averageAge : 0.0);
-    }
-
     @GetMapping("/last-five")
     public ResponseEntity<List<Student>> getLastFiveStudents() {
         List<Student> students = studentService.getLastFiveStudents();
         return ResponseEntity.ok(students);
+    }
+
+    @GetMapping("/names-starting-with-a")
+    public ResponseEntity<List<String>> getStudentNamesStartingWithA() {
+        List<String> names = studentService.getStudentNamesStartingWithA();
+        return ResponseEntity.ok(names);
+    }
+
+    @GetMapping("/average-age")
+    public ResponseEntity<Double> getAverageAge() {
+        Double average = studentService.averageAge();
+
+        if (average == null) {
+            return ResponseEntity.ok(0.0);
+        }
+
+        return ResponseEntity.ok(average);
+    }
+
+    @GetMapping("/longest-faculty-name")
+    public ResponseEntity<String> getLongestFacultyName() {
+        String longestName = studentService.getLongestFacultyName();
+        return ResponseEntity.ok(longestName != null ? longestName : "Нет факультетов");
     }
 }

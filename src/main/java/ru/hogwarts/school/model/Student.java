@@ -46,4 +46,8 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public Object getFaculty() {
+        return faculty;
+    }
 }
