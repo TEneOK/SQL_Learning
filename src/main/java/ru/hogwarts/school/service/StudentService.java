@@ -1,6 +1,7 @@
 package ru.hogwarts.school.service;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
+import static java.util.Locale.filter;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -12,9 +13,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 import javax.persistence.EntityNotFoundException;
 
@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.AvatarRepository;
 import ru.hogwarts.school.repository.StudentRepository;
@@ -124,5 +125,38 @@ public class StudentService {
 
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
+    }
+
+    public List<String> getStudentNamesStartingWithA() {
+        List<String> nameA = studentRepository.findAll().stream()
+                .map(Student::getName)
+                .filter(name -> name != null && !name.isEmpty())
+                .filter(name -> name.toUpperCase().startsWith("А"))
+                .map(String::toUpperCase)
+                .sorted()
+                .collect(Collectors.toList());
+
+        return nameA;
+    }
+
+    public Double averageAge() {
+
+        List<Student> students = studentRepository.findAll();
+
+        if (students.isEmpty()) {
+            return null;
+        }
+
+        return students.stream()
+                .collect(Collectors.averagingInt(Student::getAge));
+    }
+
+    public String getLongestFacultyName() {
+        return studentRepository.findAll()
+                .stream()
+                .map(Student::getFaculty)
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("Нет факультетов");
     }
 }
