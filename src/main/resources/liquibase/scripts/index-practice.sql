@@ -2,25 +2,21 @@
 
 -- changeset iershov:1
 - createIndex:
-            indexName: idx_student_name
-            tableName: student
+            indexName: idx_students_name
+            tableName: students
             columns:
               - column:
                   name: name
-
-              -rollback:
-                 - dropIndex:
-                 indexName: idx_student_name
-                 tableName: student
+                  descending: false
 
 -- changeset iershov:2
 - createIndex:
-            indexName: idx_faculty_name_color
-            tableName: faculty
+            indexName: idx_faculties_name_color
+            tableName: faculties
             columns:
               - column:
                   name: name
+                  descending: false
               - column:
                   name: color
-            clustered: false
-            unique: false
+                  descending: false
