@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-09--01-index-practice-1
+      author: Ilya Ershov
+      changes:
+        - createIndex:
+            indexName: idx_students_name
+            tableName: student
+            columns:
+              - column:
+                  name: name
+                  descending: false
+
+  - changeSet:
+      id: 2026-02-09--02-index-practice-2
+      author: Ilya Ershov
+      changes:
+        - createIndex:
+            indexName: idx_faculties_name_color
+            tableName: faculty
+            columns:
+              - column:
+                  name: faculty_name
+                  descending: false
+              - column:
+                  name: color
+                  descending: false

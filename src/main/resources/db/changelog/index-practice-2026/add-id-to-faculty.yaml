@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-11--01-add-id-to-faculty
+      author: Ilya Ershov
+      changes:
+        - addColumn:
+            tableName: faculty
+            schemaName: public
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_faculty
+                    nullable: false
