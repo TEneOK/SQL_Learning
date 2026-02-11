@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-11--01-fix-avatardate-id-type
+      author: Ilya Ershov
+      changes:
+        - modifyDataType:
+            tableName: avatardate
+            columnName: id
+            newDataType: BIGINT
+            schemaName: public
+
+  - changeSet:
+      id: 2026-02-11--02-add-file-path-column
+      author: Ilya Ershov
+      changes:
+        - addColumn:
+            tableName: avatardate
+            schemaName: public
+            columns:
+              - column:
+                  name: file_path
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 2026-02-11--03-add-file-size-column
+      author: Ilya Ershov
+      changes:
+        - addColumn:
+            tableName: avatardate
+            schemaName: public
+            columns:
+              - column:
+                  name: file_size
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 2026-02-11--04-add-media-type-column
+      author: Ilya Ershov
+      changes:
+        - addColumn:
+            tableName: avatardate
+            schemaName: public
+            columns:
+              - column:
+                  name: media_type
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 2026-02-11--07-add-student-id-column
+      author: Ilya Ershov
+      changes:
+        - addColumn:
+            tableName: avatardate
+            schemaName: public
+            columns:
+              - column:
+                  name: student_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true

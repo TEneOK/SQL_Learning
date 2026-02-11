@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: index-practice-2026/index-practice.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: index-practice-2026/add-column-to-avatardate.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: index-practice-2026/add-id-to-faculty.yaml
+      relativeToChangelogFile: true

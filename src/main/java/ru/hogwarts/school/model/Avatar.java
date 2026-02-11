@@ -2,23 +2,21 @@ package ru.hogwarts.school.model;
 
 import java.util.Arrays;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "avatardate")
 public class Avatar {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     private String filePath, mediaType;
     private long fileSize;
 
     @Lob
+    @Column(name = "data", columnDefinition = "BYTEA")
     private byte[] data;
 
     @OneToOne
@@ -27,7 +25,7 @@ public class Avatar {
     public Avatar() {
     }
 
-    public Avatar(Long id, String filePath, String mediaType, long fileSize, Student student) {
+    public Avatar(long id, String filePath, String mediaType, long fileSize, Student student) {
         this.id = id;
         this.filePath = filePath;
         this.mediaType = mediaType;
@@ -64,11 +62,11 @@ public class Avatar {
                 '}';
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

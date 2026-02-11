@@ -1,21 +1,26 @@
--- liquibase formatted sql
-
--- changeset iershov:1
-- createIndex:
+databaseChangeLog:
+  - changeSet:
+      id: 2026-02-09--01-index-practice-1
+      author: Ilya Ershov
+      changes:
+        - createIndex:
             indexName: idx_students_name
-            tableName: students
+            tableName: student
             columns:
               - column:
                   name: name
                   descending: false
 
--- changeset iershov:2
-- createIndex:
+  - changeSet:
+      id: 2026-02-09--02-index-practice-2
+      author: Ilya Ershov
+      changes:
+        - createIndex:
             indexName: idx_faculties_name_color
-            tableName: faculties
+            tableName: faculty
             columns:
               - column:
-                  name: name
+                  name: faculty_name
                   descending: false
               - column:
                   name: color
